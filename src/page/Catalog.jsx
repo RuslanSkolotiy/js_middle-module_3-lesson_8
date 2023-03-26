@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { Link, useLocation, useParams, useSearchParams } from "react-router-dom";
 import Filter from "../components/Filter";
 import characrers from "../data/characters.json";
 import episode from "../data/episode.json";
@@ -14,7 +14,6 @@ const Catalog = function () {
         sort: searchParams.get("sort") || "created",
         order: searchParams.get("order") || "ASC",
     });
-    console.log('filter', filter);
 
     useEffect(() => {
         setError("");
@@ -32,7 +31,7 @@ const Catalog = function () {
                 setItems([]);
                 setError("Ошибка! Категория не найдена!");
         }
-        
+
     }, [groupId]);
 
     const handleFilter = (data) => {

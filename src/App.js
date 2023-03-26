@@ -1,11 +1,17 @@
-import { NavLink, Route, Routes, useSearchParams } from "react-router-dom";
+import {
+    NavLink,
+    Route,
+    Routes,
+    useLocation,
+    useSearchParams,
+} from "react-router-dom";
 import Catalog from "./page/Catalog";
 import Detail from "./page/Detail";
 import Main from "./page/Main";
 import Page404 from "./page/Page404";
 
 function App() {
-    const [seachParams] = useSearchParams();
+    const location = useLocation();
     return (
         <>
             <nav>
@@ -13,7 +19,7 @@ function App() {
                 <NavLink
                     to={{
                         pathname: "/characters",
-                        search: seachParams.toString(),
+                        search: location.search,
                     }}
                 >
                     Герои
@@ -21,7 +27,7 @@ function App() {
                 <NavLink
                     to={{
                         pathname: "/location",
-                        search: seachParams.toString(),
+                        search: location.search,
                     }}
                 >
                     Локации
@@ -29,7 +35,7 @@ function App() {
                 <NavLink
                     to={{
                         pathname: "/episode",
-                        search: seachParams.toString(),
+                        search: location.search,
                     }}
                 >
                     Эпизоды
