@@ -1,0 +1,12 @@
+.input-wrapper {
+    input {
+        &.filled {
+            background-color: rgb(241, 243, 245);
+            border-color: rgb(241, 243, 245);
+        }
+        &.unstyled {
+            background-color: transparent;
+            border: nonde
+        }
+    }
+}

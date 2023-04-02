@@ -28,3 +28,11 @@ select {
 .filter {
   padding-bottom: 10px;
 }
+
+.login-submit-row {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 20rem;
+    text-align: left;
+    padding-top: 10px;
+}

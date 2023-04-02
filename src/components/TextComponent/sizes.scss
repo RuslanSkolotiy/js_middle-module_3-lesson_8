@@ -1,0 +1,101 @@
+.input-wrapper {
+    &.size-xs {
+        .input-label {
+            font-size: 0.75rem;
+        }
+        .input-description {
+            font-size: calc(0.625rem);
+        }
+        input {
+            height: 1.875rem;
+            line-height: calc(1.75rem);
+            font-size: 0.75rem;
+            min-height: 1.875rem;
+            padding-left: calc(0.625rem);
+            padding-right: calc(0.625rem);
+        }
+        .error-caption {
+            font-size: calc(0.625rem);
+        }
+    }
+
+    &.size-sm {
+        .input-label {
+            font-size: 0.875rem;
+        }
+        .input-description {
+            font-size: calc(0.75rem);
+        }
+        input {
+            height: 2.25rem;
+            line-height: calc(2.125rem);
+            font-size: 0.875rem;
+            min-height: 2.25rem;
+            padding-left: calc(0.75rem);
+            padding-right: calc(0.75rem);
+        }
+        .error-caption {
+            font-size: calc(0.875rem - 0.125rem);
+        }
+    }
+
+    &.size-md {
+        .input-label {
+            font-size: 1rem;
+        }
+        .input-description {
+            font-size: calc(0.875rem);
+        }
+        input {
+            height: 2.625rem;
+            line-height: calc(2.5rem);
+            font-size: 1rem;
+            min-height: 2.625rem;
+            padding-left: calc(0.875rem);
+            padding-right: calc(0.875rem);
+        }
+        .error-caption {
+            font-size: calc(0.875rem);
+        }
+    }
+
+    &.size-lg {
+        .input-label {
+            font-size: 1.125rem;
+        }
+        .input-description {
+            font-size: calc(1rem);
+        }
+        input {
+            height: 3.125rem;
+            line-height: calc(3rem);
+            font-size: 1.125rem;
+            min-height: 3.125rem;
+            padding-left: calc(1.04167rem);
+            padding-right: calc(1.04167rem);
+        }
+        .error-caption {
+            font-size: calc(1rem);
+        }
+    }
+
+    &.size-lg {
+        .input-label {
+            font-size: 1.25rem;
+        }
+        .input-description {
+            font-size: calc(1.125rem);
+        }
+        input {
+            height: 3.75rem;
+            line-height: calc(3.625rem);
+            font-size: 1.25rem;
+            min-height: 3.75rem;
+            padding-left: calc(1.25rem);
+            padding-right: calc(1.25rem);
+        }
+        .error-caption {
+            font-size: calc(1.125rem);
+        }
+    }
+}
