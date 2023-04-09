@@ -1,80 +1,92 @@
-import {
-    Link,
-    NavLink,
-    Route,
-    Routes,
-    useLocation,
-    useSearchParams,
-} from "react-router-dom";
-import Catalog from "./page/Catalog";
-import Detail from "./page/Detail";
+import { NavLink, Route, Routes, useLocation } from "react-router-dom";
 import Main from "./page/Main";
 import Page404 from "./page/Page404";
 import Signin from "./components/Signin";
 import AuthProvider from "./components/context/AuthProvider";
 import PrivateRoute from "./components/PrivateRoute";
-import PrivateContent from "./components/PrivateContent";
-import SignoutLink from "./components/SignoutLink";
-import GuestContent from "./components/GuestContent";
+import NavigationMenu from "./components/NavigationMenu";
+import { Suspense, lazy } from "react";
+import ErrorBoundary from "./components/ErrorBoundary";
+
+const CharactersList = lazy(() => import("./page/CharactersList"));
+const CharactersDetail = lazy(() => import("./page/CharactersDetail"));
+const LocationList = lazy(() => import("./page/LocationList"));
+const LocationDetail = lazy(() => import("./page/LocationDetail"));
+const EpisodeList = lazy(() => import("./page/EpisodeList"));
+const EpisodeDetail = lazy(() => import("./page/EpisodeDetail"));
 
 function App() {
-    const location = useLocation();
     return (
         <AuthProvider>
-            <nav>
-                <NavLink to="/">Главная</NavLink>
-                <NavLink
-                    to={{
-                        pathname: "/characters",
-                        search: location.search,
-                    }}
-                >
-                    Герои
-                </NavLink>
-                <NavLink
-                    to={{
-                        pathname: "/location",
-                        search: location.search,
-                    }}
-                >
-                    Локации
-                </NavLink>
-                <NavLink
-                    to={{
-                        pathname: "/episode",
-                        search: location.search,
-                    }}
-                >
-                    Эпизоды
-                </NavLink>
-                <GuestContent>
-                    <NavLink to="/login">Вход</NavLink>
-                </GuestContent>
-                <PrivateContent>
-                    <SignoutLink>Выход</SignoutLink>
-                </PrivateContent>
-            </nav>
-            <Routes>
-                <Route path="/" element={<Main />} />
-                <Route
-                    path="/:groupId"
-                    element={
-                        <PrivateRoute>
-                            <Catalog />
-                        </PrivateRoute>
-                    }
-                />
-                <Route
-                    path="/:groupId/:elementId"
-                    element={
-                        <PrivateRoute>
-                            <Detail />
-                        </PrivateRoute>
-                    }
-                />
-                <Route path="/login" element={<Signin />} />
-                <Route path="*" element={<Page404 />} />
-            </Routes>
+            <NavigationMenu />
+
+            <Suspense>
+                <Routes>
+                    <Route path="/" element={<Main />} />
+                    <Route
+                        path="/characters"
+                        element={
+                            <PrivateRoute>
+                                <ErrorBoundary key="1">
+                                    <CharactersList />
+                                </ErrorBoundary>
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/characters/:elementId"
+                        element={
+                            <PrivateRoute>
+                                <ErrorBoundary>
+                                    <CharactersDetail />
+                                </ErrorBoundary>
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/location"
+                        element={
+                            <PrivateRoute>
+                                <ErrorBoundary key="2">
+                                    <LocationList />
+                                </ErrorBoundary>
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/location/:elementId"
+                        element={
+                            <PrivateRoute>
+                                <ErrorBoundary>
+                                    <LocationDetail />
+                                </ErrorBoundary>
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/episode"
+                        element={
+                            <PrivateRoute>
+                                <ErrorBoundary key="3">
+                                    <EpisodeList />
+                                </ErrorBoundary>
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/episode/:elementId"
+                        element={
+                            <PrivateRoute>
+                                <ErrorBoundary>
+                                    <EpisodeDetail />
+                                </ErrorBoundary>
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route path="/login" element={<Signin />} />
+                    <Route path="*" element={<Page404 />} />
+                </Routes>
+            </Suspense>
         </AuthProvider>
     );
 }

@@ -1,1 +1,1 @@
-## Профессия Middle Frontend-разработчик / Модуль 3. React / Урок 7. Context
+## Профессия Middle Frontend-разработчик / Модуль 3. React / Урок 8. Оптимизация
